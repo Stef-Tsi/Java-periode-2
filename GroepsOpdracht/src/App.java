@@ -4,6 +4,6 @@ public class App {
         System.out.println("tuan");
         System.out.println("Luuk Beks");
         System.out.println("Stef");
-        System.out.println("Miquel");
+        System.out.println("Miqueltest");
     }
 }
