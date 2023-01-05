@@ -1,4 +1,4 @@
-package Codecademy.Domain;
+package codecademy.domain;
 
 public class Certificate{
 
