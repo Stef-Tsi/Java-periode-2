@@ -1,4 +1,4 @@
-package Codecademy.Domain;
+package com.codecademy.domain;
 
 public class Course {
     private String courseName;

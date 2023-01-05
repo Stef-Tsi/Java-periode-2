@@ -1,4 +1,4 @@
-package Codecademy.Domain;
+package com.codecademy.domain;
 
 public enum Status {
     CONCEPT,

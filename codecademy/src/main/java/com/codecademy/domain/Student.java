@@ -1,4 +1,4 @@
-package Codecademy.Domain;
+package com.codecademy.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
