@@ -4,7 +4,7 @@ public class Course {
     private String courseName;
     private String courseTopic;
     private String CourseIntroText;
-    private String ddd;
+    private String courseTag;
     private Difficulty difficulty;
 
     public Course(String courseName, String courseTopic, String courseIntroText, String courseTag, Difficulty difficulty) {
