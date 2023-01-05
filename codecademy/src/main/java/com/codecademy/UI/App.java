@@ -1,4 +1,4 @@
-package com.codecademy;
+package com.codecademy.UI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

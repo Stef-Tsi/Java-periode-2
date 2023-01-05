@@ -1,4 +1,4 @@
-package com.codecademy;
+package com.codecademy.UI;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
