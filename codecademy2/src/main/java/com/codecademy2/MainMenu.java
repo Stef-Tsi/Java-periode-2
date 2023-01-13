@@ -44,17 +44,17 @@ public class MainMenu extends Application {
         scene = new Scene(root);
         
         student.setOnAction(e -> {
-           StudentController.diplay(); 
+           StudentController.display(); 
            stage.close();
         });
 
         course.setOnAction(e -> {
-            CourseController.diplay();
+            CourseController.display();
             stage.close();
         });
 
         enrollment.setOnAction(e -> {
-            EnrollmentController.diplay();
+            EnrollmentController.display();
             stage.close();
         });
 
@@ -66,7 +66,7 @@ public class MainMenu extends Application {
         stage.show();
   
     }
-    public static void diplay(){
+    public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
         stage.setWidth(800);
@@ -91,17 +91,17 @@ public class MainMenu extends Application {
         scene = new Scene(root);
         
         student.setOnAction(e -> {
-           StudentController.diplay(); 
+           StudentController.display(); 
            stage.close();
         });
 
         course.setOnAction(e -> {
-            CourseController.diplay();
+            CourseController.display();
             stage.close();
         });
 
         enrollment.setOnAction(e -> {
-            EnrollmentController.diplay();
+            EnrollmentController.display();
             stage.close();
         });
 

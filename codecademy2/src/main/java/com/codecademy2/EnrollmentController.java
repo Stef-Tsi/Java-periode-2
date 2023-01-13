@@ -4,12 +4,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class EnrollmentController {
     
-    public static void diplay(){
+    public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
         stage.setWidth(800);
@@ -17,23 +18,28 @@ public class EnrollmentController {
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
-        Button student = new Button("Student");
+        Button add = new Button("Add");
+        Button edit = new Button("Edit");
+        Button delete = new Button("Delete");
         Button back = new Button("Exit");
-        student.setPrefSize(80, 40);
-        back.setPrefSize(50, 20);
+      
+        add.setPrefSize(50, 30);
+        edit.setPrefSize(50, 30);
+        delete.setPrefSize(50,30);
+        back.setPrefSize(50, 30);
 
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(student, back);
-        vBox.setSpacing(25);
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(add, edit, delete, back);
+        hBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
-        root.getChildren().add(vBox);
+        root.getChildren().add(hBox);
         Scene scene = new Scene(root);
         
 
 
         back.setOnAction(e -> {
-            MainMenu.diplay();
+            MainMenu.display();
             stage.close();
         });
 
