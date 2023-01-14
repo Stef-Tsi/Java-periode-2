@@ -30,7 +30,6 @@ public class AddStudentController {
         gender.getItems().add("Female");
         gender.getItems().add("Non-Binary");
 
-
         TextField adress = new TextField();
         TextField postcodeCol = new TextField();
         TextField city = new TextField();
@@ -46,23 +45,28 @@ public class AddStudentController {
         country.setPromptText("Country");
         enrollments.setPromptText("Enrollments");
         birthday.setPromptText("Birthday");
+
         Button back = new Button("Back");
-        
+        Button save = new Button("Save");
+        HBox hBox = new HBox();
+        hBox.setSpacing(25);
+        hBox.getChildren().addAll(save, back);
         
         back.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday);
+        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday ,hBox);
 
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
-        root.getChildren().addAll(vBox,back);
+        root.getChildren().addAll(vBox);
         Scene scene = new Scene(root);
         
+
         Logic.postalCode(postcodeCol.getText());
         
-        
+
         back.setOnAction(e -> {
             stage.close();
         });

@@ -21,7 +21,9 @@ public class CourseController {
         Button edit = new Button("Edit");
         Button delete = new Button("Delete");
         Button back = new Button("Exit");
-      
+
+
+
         add.setPrefSize(50, 30);
         edit.setPrefSize(50, 30);
         delete.setPrefSize(80,30);
@@ -35,8 +37,6 @@ public class CourseController {
         root.getChildren().add(hBox);
         Scene scene = new Scene(root);
         
-
-
         back.setOnAction(e -> {
             MainMenu.display();
             stage.close();
