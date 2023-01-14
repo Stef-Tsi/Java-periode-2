@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class WebcastController {
@@ -23,8 +24,8 @@ public class WebcastController {
 
         FlowPane root = new FlowPane();
         TableView table = new TableView();
-        Label student = new Label("Student");
-        student.setFont(new Font("Arial", 20));
+        Label webcastOverview = new Label("Webcast overview");
+        webcastOverview.setFont(Font.font("Arial",FontWeight.BOLD ,30));
 
         Button add = new Button("Add");
         Button edit = new Button("Edit");
@@ -50,7 +51,7 @@ public class WebcastController {
         VBox vbox = new VBox();
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(table, hBox);
+        vbox.getChildren().addAll(webcastOverview, table, hBox);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(vbox);

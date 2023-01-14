@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class ModuleController {
@@ -21,8 +22,11 @@ public class ModuleController {
         stage.setHeight(800);
         stage.setResizable(false);
 
+        
         FlowPane root = new FlowPane();
         TableView table = new TableView();
+        Label moduleOverview = new Label("Module overview");
+        moduleOverview.setFont(Font.font("Arial",FontWeight.BOLD ,30));
 
         Button add = new Button("Add");
         Button edit = new Button("Edit");
@@ -49,7 +53,7 @@ public class ModuleController {
  
         VBox vbox = new VBox();
         vbox.setSpacing(10);
-        vbox.getChildren().addAll(table, hBox);
+        vbox.getChildren().addAll(moduleOverview, table, hBox);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(vbox);

@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class AddStudentController {
@@ -22,6 +25,8 @@ public class AddStudentController {
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
+        Label student = new Label("Student");
+        student.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         
         TextField name = new TextField();
         TextField email = new TextField();
@@ -56,7 +61,7 @@ public class AddStudentController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday, hBox);
+        vBox.getChildren().addAll(student, name, email, gender , adress, postcodeCol, city, country, enrollments, birthday, hBox);
 
         vBox.setSpacing(25);
 

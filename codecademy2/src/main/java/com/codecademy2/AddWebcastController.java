@@ -13,6 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class AddWebcastController {
@@ -24,14 +25,14 @@ public class AddWebcastController {
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
-        
+        Label webcast = new Label("Webcast");
+        webcast.setFont(Font.font("Arial",FontWeight.BOLD ,30));
         Scene scene = new Scene(root);
         TextField duration = new TextField();
         TextField hostName = new TextField();
         TextField organisationName = new TextField();
         TextField url = new TextField();
         
-
         duration.setPromptText("duration");
         hostName.setPromptText("Host name");
         organisationName.setPromptText("Organisation Name");
@@ -47,7 +48,7 @@ public class AddWebcastController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(duration , hostName, organisationName, url, hBox);
+        vBox.getChildren().addAll(webcast, duration , hostName, organisationName, url, hBox);
         
         vBox.setSpacing(25);
 

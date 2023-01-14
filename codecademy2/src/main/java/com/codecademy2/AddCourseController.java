@@ -4,10 +4,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class AddCourseController {
@@ -21,6 +26,10 @@ public class AddCourseController {
         FlowPane root = new FlowPane();
         
         Scene scene = new Scene(root);
+        Label course = new Label("Course");
+        course.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        
+
         TextField courseName = new TextField();
         TextField courseTopic = new TextField();
         TextField courseIntroText = new TextField();
@@ -45,7 +54,7 @@ public class AddCourseController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(courseName,courseTopic, courseIntroText, difficulty, hBox);
+        vBox.getChildren().addAll(course, courseName,courseTopic, courseIntroText, difficulty, hBox);
         
         vBox.setSpacing(25);
 
@@ -53,7 +62,6 @@ public class AddCourseController {
         root.getChildren().addAll(vBox);
 
         back.setOnAction(e -> {
-            CourseController.display();
             stage.close();
         });
 

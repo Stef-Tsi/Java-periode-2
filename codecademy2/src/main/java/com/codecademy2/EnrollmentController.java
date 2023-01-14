@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class EnrollmentController {
@@ -24,7 +25,8 @@ public class EnrollmentController {
 
         FlowPane root = new FlowPane();
         TableView table = new TableView();
-    
+        Label enrollmentOverview = new Label("Enrollment overview");
+        enrollmentOverview.setFont(Font.font("Arial",FontWeight.BOLD ,30));
 
         Button add = new Button("Add");
         Button edit = new Button("Edit");
@@ -52,7 +54,7 @@ public class EnrollmentController {
         VBox vbox = new VBox();
         vbox.setSpacing(10);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(table, hBox);
+        vbox.getChildren().addAll(enrollmentOverview, table, hBox);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(vbox);
