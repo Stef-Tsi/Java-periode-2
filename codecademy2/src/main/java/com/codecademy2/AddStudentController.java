@@ -3,8 +3,8 @@ package com.codecademy2;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -20,35 +20,37 @@ public class AddStudentController {
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
-        //nameCol, emailCol, genderCol, adressCol, cityCol, countryCol, enrollmentsCol, birthdayCol
-        Label nameCol = new Label("Name");
-        Label emailCol = new Label("Email");
-        Label genderCol = new Label("Gender");
-        Label adressCol = new Label("Adress");
-        Label postcodeCol = new Label("Postcode");
-        Label cityCol = new Label("City");
-        Label countryCol = new Label("Country");
-        Label enrollmentsCol = new Label("Enrollments");
-        Label birthdayCol = new Label("Birthday");
-
+        
         TextField name = new TextField();
         TextField email = new TextField();
-        TextField gender = new TextField();
+        ChoiceBox gender = new ChoiceBox();
+        gender.getItems().add("Male");
+        gender.getItems().add("Female");
+        gender.getItems().add("Non-Binary");
+
+
         TextField adress = new TextField();
-        TextField postcode = new TextField();
+        TextField postcodeCol = new TextField();
         TextField city = new TextField();
         TextField country = new TextField();
         TextField enrollments = new TextField();
         DatePicker birthday = new DatePicker();
 
-
+        name.setPromptText("Name");
+        email.setPromptText("Email");
+        adress.setPromptText("Adress");
+        postcodeCol.setPromptText("Postcode");
+        city.setPromptText("City");
+        country.setPromptText("Country");
+        enrollments.setPromptText("Enrollments");
+        birthday.setPromptText("Birthday");
         Button back = new Button("Back");
         
         
         back.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(name, email, gender , adress, postcode, city, country, enrollments, birthday);
+        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday);
 
         vBox.setSpacing(25);
 

@@ -24,7 +24,7 @@ public class CourseController {
       
         add.setPrefSize(50, 30);
         edit.setPrefSize(50, 30);
-        delete.setPrefSize(50,30);
+        delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
 
         HBox hBox = new HBox();

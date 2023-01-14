@@ -41,7 +41,7 @@ public class StudentController {
 
         add.setPrefSize(50, 30);
         edit.setPrefSize(50, 30);
-        delete.setPrefSize(50,30);
+        delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
         table.setEditable(false);
         TableColumn nameCol = new TableColumn("Name");
