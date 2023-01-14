@@ -1,5 +1,7 @@
 package com.codecademy2;
 
+import com.codecademy2.Logic.Logic;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -58,8 +60,9 @@ public class AddStudentController {
         root.getChildren().addAll(vBox,back);
         Scene scene = new Scene(root);
         
-
-
+        Logic.postalCode(postcodeCol.getText());
+        
+        
         back.setOnAction(e -> {
             stage.close();
         });
@@ -67,4 +70,5 @@ public class AddStudentController {
         stage.setScene(scene);
         stage.show();
     }
+    
 }

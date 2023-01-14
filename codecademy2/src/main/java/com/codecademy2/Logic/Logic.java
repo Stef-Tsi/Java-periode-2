@@ -49,7 +49,7 @@ public class Logic {
             return false;
         }
     }
-    public String postalCode(String postalCode)
+    public static String postalCode(String postalCode)
     {
         if(postalCode == null)
         {
