@@ -20,13 +20,12 @@ public class AddEnrollmentController {
 
         FlowPane root = new FlowPane();
         
-        TextField progress = new TextField();
+
         ChoiceBox certificate = new ChoiceBox();
         ChoiceBox student = new ChoiceBox();
         ChoiceBox course = new ChoiceBox();
         
-    
-        progress.setPromptText("Progress in percentage");
+
 
         Button back = new Button("Back");
         Button save = new Button("Save");
@@ -38,7 +37,7 @@ public class AddEnrollmentController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(progress, certificate, student,course , hBox);
+        vBox.getChildren().addAll( certificate, student,course , hBox);
         
         vBox.setSpacing(25);
 
