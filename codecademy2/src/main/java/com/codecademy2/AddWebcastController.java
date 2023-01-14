@@ -1,16 +1,21 @@
 package com.codecademy2;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class AddEnrollmentController {
+public class AddWebcastController {
     public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
@@ -20,14 +25,18 @@ public class AddEnrollmentController {
 
         FlowPane root = new FlowPane();
         
-        TextField progress = new TextField();
-        ChoiceBox certificate = new ChoiceBox();
-        ChoiceBox student = new ChoiceBox();
-        ChoiceBox course = new ChoiceBox();
+        Scene scene = new Scene(root);
+        TextField duration = new TextField();
+        TextField hostName = new TextField();
+        TextField organisationName = new TextField();
+        TextField url = new TextField();
         
-    
-        progress.setPromptText("Progress in percentage");
 
+        duration.setPromptText("duration");
+        hostName.setPromptText("Host name");
+        organisationName.setPromptText("Organisation Name");
+        url.setPromptText("url");
+       
         Button back = new Button("Back");
         Button save = new Button("Save");
       
@@ -38,25 +47,19 @@ public class AddEnrollmentController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(progress, certificate, student,course , hBox);
+        vBox.getChildren().addAll(duration , hostName, organisationName, url, hBox);
         
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(vBox);
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-
-        save.setOnAction(e -> {
-           
-        });
-
         back.setOnAction(e -> {
-            ModuleController.display();
+            WebcastController.display();
             stage.close();
         });
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

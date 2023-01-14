@@ -14,11 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AddStudentController {
-    public static void diplay(){
+    public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
-        stage.setWidth(700);
-        stage.setHeight(500);
+        stage.setWidth(900);
+        stage.setHeight(700);
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
@@ -48,25 +48,22 @@ public class AddStudentController {
 
         Button back = new Button("Back");
         Button save = new Button("Save");
+      
         HBox hBox = new HBox();
-        hBox.setSpacing(25);
         hBox.getChildren().addAll(save, back);
-        
+        hBox.setSpacing(70);
         back.setPrefSize(50, 30);
+        save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday ,hBox);
+        vBox.getChildren().addAll(name, email, gender , adress, postcodeCol, city, country, enrollments, birthday, hBox);
 
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(vBox);
         Scene scene = new Scene(root);
-        
-
-        Logic.postalCode(postcodeCol.getText());
-        
-
+            
         back.setOnAction(e -> {
             stage.close();
         });

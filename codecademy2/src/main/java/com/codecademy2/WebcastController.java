@@ -5,17 +5,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class StudentController {
+public class WebcastController {
     public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
@@ -25,7 +23,6 @@ public class StudentController {
 
         FlowPane root = new FlowPane();
         TableView table = new TableView();
-
         Label student = new Label("Student");
         student.setFont(new Font("Arial", 20));
 
@@ -44,17 +41,11 @@ public class StudentController {
         delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
         table.setEditable(false);
-        TableColumn nameCol = new TableColumn("Name");
-        TableColumn emailCol = new TableColumn("Email");
-        TableColumn genderCol = new TableColumn("Gender");
-        TableColumn adressCol = new TableColumn("Adress");
-        TableColumn postcodeCol = new TableColumn("Postcode");
-        TableColumn cityCol = new TableColumn("City");
-        TableColumn countryCol = new TableColumn("Country");
-        TableColumn enrollmentsCol = new TableColumn("Enrollments");
-        TableColumn birthdayCol = new TableColumn("Birthday");
-
-        table.getColumns().addAll(nameCol, emailCol, genderCol, adressCol, postcodeCol, cityCol, countryCol, enrollmentsCol, birthdayCol);
+        TableColumn durationCol = new TableColumn("Duration");
+        TableColumn hostNameCol = new TableColumn("Host name ");
+        TableColumn organisationNameCol = new TableColumn("Organisationname");
+        TableColumn urlCol = new TableColumn("Url");
+        table.getColumns().addAll(durationCol, hostNameCol, organisationNameCol, urlCol);
  
         VBox vbox = new VBox();
         vbox.setSpacing(10);
@@ -67,7 +58,8 @@ public class StudentController {
         Scene scene = new Scene(root);
         
         add.setOnAction(e -> {
-            AddStudentController.display();
+            AddWebcastController.display();
+            
         });
 
         back.setOnAction(e -> {

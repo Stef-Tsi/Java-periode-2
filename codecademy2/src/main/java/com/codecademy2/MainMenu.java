@@ -30,13 +30,15 @@ public class MainMenu extends Application {
         Button student = new Button("Student");
         Button course = new Button("Course");
         Button enrollment = new Button("Enrollment");
+        Button webcast = new Button("Webcast");
         Button exit = new Button("Exit");
         student.setPrefSize(80, 40);
         course.setPrefSize(80, 40);
         enrollment.setPrefSize(80, 40);
+        webcast.setPrefSize(80, 40);
         exit.setPrefSize(50, 20);
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(student, course, enrollment, exit);
+        vBox.getChildren().addAll(student, course, enrollment, webcast, exit);
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
@@ -55,6 +57,11 @@ public class MainMenu extends Application {
 
         enrollment.setOnAction(e -> {
             EnrollmentController.display();
+            stage.close();
+        });
+
+        webcast.setOnAction(e -> {
+            WebcastController.display();
             stage.close();
         });
 
@@ -77,13 +84,15 @@ public class MainMenu extends Application {
         Button student = new Button("Student");
         Button course = new Button("Course");
         Button enrollment = new Button("Enrollment");
+        Button webcast = new Button("Webcast");
         Button exit = new Button("Exit");
         student.setPrefSize(80, 40);
         course.setPrefSize(80, 40);
         enrollment.setPrefSize(80, 40);
+        webcast.setPrefSize(80, 40);
         exit.setPrefSize(50, 20);
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(student, course, enrollment, exit);
+        vBox.getChildren().addAll(student, course, enrollment, webcast, exit);
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
@@ -102,6 +111,11 @@ public class MainMenu extends Application {
 
         enrollment.setOnAction(e -> {
             EnrollmentController.display();
+            stage.close();
+        });
+
+        webcast.setOnAction(e -> {
+            WebcastController.display();
             stage.close();
         });
 

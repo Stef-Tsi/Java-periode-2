@@ -3,14 +3,13 @@ package com.codecademy2;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class AddEnrollmentController {
+public class AddModuleController {
     public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
@@ -20,14 +19,15 @@ public class AddEnrollmentController {
 
         FlowPane root = new FlowPane();
         
-        TextField progress = new TextField();
-        ChoiceBox certificate = new ChoiceBox();
-        ChoiceBox student = new ChoiceBox();
-        ChoiceBox course = new ChoiceBox();
+        TextField contactName = new TextField();
+        TextField contactEmail = new TextField();
+        TextField version = new TextField();
         
-    
-        progress.setPromptText("Progress in percentage");
 
+        contactName.setPromptText("Contact name");
+        contactEmail.setPromptText("Contact email");
+        version.setPromptText("version");
+       
         Button back = new Button("Back");
         Button save = new Button("Save");
       
@@ -38,7 +38,7 @@ public class AddEnrollmentController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(progress, certificate, student,course , hBox);
+        vBox.getChildren().addAll(contactName , contactEmail, version, hBox);
         
         vBox.setSpacing(25);
 
@@ -48,6 +48,7 @@ public class AddEnrollmentController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
 
 
         save.setOnAction(e -> {

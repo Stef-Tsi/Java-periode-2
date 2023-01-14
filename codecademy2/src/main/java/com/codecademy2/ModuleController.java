@@ -1,21 +1,19 @@
 package com.codecademy2;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class StudentController {
+public class ModuleController {
     public static void display(){
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
@@ -26,13 +24,10 @@ public class StudentController {
         FlowPane root = new FlowPane();
         TableView table = new TableView();
 
-        Label student = new Label("Student");
-        student.setFont(new Font("Arial", 20));
-
         Button add = new Button("Add");
         Button edit = new Button("Edit");
         Button delete = new Button("Delete");
-        Button back = new Button("Exit");
+        Button back = new Button("Back");
 
         HBox hBox = new HBox();
         
@@ -44,21 +39,16 @@ public class StudentController {
         delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
         table.setEditable(false);
-        TableColumn nameCol = new TableColumn("Name");
-        TableColumn emailCol = new TableColumn("Email");
-        TableColumn genderCol = new TableColumn("Gender");
-        TableColumn adressCol = new TableColumn("Adress");
-        TableColumn postcodeCol = new TableColumn("Postcode");
-        TableColumn cityCol = new TableColumn("City");
-        TableColumn countryCol = new TableColumn("Country");
-        TableColumn enrollmentsCol = new TableColumn("Enrollments");
-        TableColumn birthdayCol = new TableColumn("Birthday");
+        TableColumn contactName = new TableColumn("Contact name");
+        TableColumn contactEmail = new TableColumn("Contact Email");
+        TableColumn moduleversion = new TableColumn("version");
+        TableColumn follownumber = new TableColumn("Follow Number");
+ 
 
-        table.getColumns().addAll(nameCol, emailCol, genderCol, adressCol, postcodeCol, cityCol, countryCol, enrollmentsCol, birthdayCol);
+        table.getColumns().addAll(follownumber, moduleversion, contactName, contactEmail);
  
         VBox vbox = new VBox();
         vbox.setSpacing(10);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
         vbox.getChildren().addAll(table, hBox);
 
         root.setAlignment(Pos.CENTER);
@@ -67,8 +57,9 @@ public class StudentController {
         Scene scene = new Scene(root);
         
         add.setOnAction(e -> {
-            AddStudentController.display();
+            AddModuleController.display();
         });
+
 
         back.setOnAction(e -> {
             MainMenu.display();
