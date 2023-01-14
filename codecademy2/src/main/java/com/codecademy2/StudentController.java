@@ -33,7 +33,7 @@ public class StudentController {
         Button add = new Button("Add");
         Button edit = new Button("Edit");
         Button delete = new Button("Delete");
-        Button back = new Button("Exit");
+        Button back = new Button("Back");
 
         HBox hBox = new HBox();
         

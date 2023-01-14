@@ -45,6 +45,9 @@ public class MainMenu extends Application {
         enrollment.setPrefSize(150, 50);
         webcast.setPrefSize(150, 50);
         exit.setPrefSize(100, 30);
+        exit.setTranslateX(350);
+        exit.setTranslateY(60);
+
         VBox vBox = new VBox();
         vBox.getChildren().addAll(codecademy, student, course, enrollment, webcast, exit);
         vBox.setSpacing(25);
@@ -88,24 +91,32 @@ public class MainMenu extends Application {
         stage.setHeight(600);
         stage.setResizable(false);
 
+        Label codecademy = new Label("Codecademy");
+        codecademy.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        
+        codecademy.setTranslateY(-55);
+        codecademy.setTranslateX(-275);
         FlowPane root = new FlowPane();
         Button student = new Button("Student");
         Button course = new Button("Course");
         Button enrollment = new Button("Enrollment");
         Button webcast = new Button("Webcast");
         Button exit = new Button("Exit");
-        student.setPrefSize(80, 40);
-        course.setPrefSize(80, 40);
-        enrollment.setPrefSize(80, 40);
-        webcast.setPrefSize(80, 40);
-        exit.setPrefSize(50, 20);
+        student.setPrefSize(150, 50);
+        course.setPrefSize(150, 50);
+        enrollment.setPrefSize(150, 50);
+        webcast.setPrefSize(150, 50);
+        exit.setPrefSize(100, 30);
+        exit.setTranslateX(350);
+        exit.setTranslateY(60);
+
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(student, course, enrollment, webcast, exit);
+        vBox.getChildren().addAll(codecademy, student, course, enrollment, webcast, exit);
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
         root.getChildren().add(vBox);
-        scene = new Scene(root);
+        Scene scene = new Scene(root);
         
         student.setOnAction(e -> {
            StudentController.display(); 
