@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import com.codecademy2.Student;
 
@@ -45,7 +46,7 @@ public class DbConnection {
             ObservableList<Student> list = FXCollections.observableArrayList();
 
             while (result.next()) {
-                list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getString("BirthDate"), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
+                list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getDate("BirthDate").toLocalDate(), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
             }
             return list;
         } catch (SQLException e) {
@@ -53,6 +54,51 @@ public class DbConnection {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void addStudent(Student student) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("INSERT INTO Student VALUES(?, ?, ?, ?, ?, ?, ?)");
+            query.setString(1, student.getEmail());
+            query.setString(2, student.getName());
+            query.setDate(3, java.sql.Date.valueOf(student.getBirthDate()));
+            query.setString(4, student.getGender());
+            query.setString(5, student.getAdress());
+            query.setString(6, student.getCountry());
+            query.setString(7, student.getCity());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in addStudent");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateStudent(Student student) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("UPDATE Student SET Name = ?, BirthDate = ?, Gender = ?, Adress = ?, Country = ?, City = ? WHERE StudentEmail = ?"); 
+            query.setString(1, student.getName());
+            query.setDate(2, java.sql.Date.valueOf(student.getBirthDate()));
+            query.setString(3, student.getGender());
+            query.setString(4, student.getAdress());
+            query.setString(5, student.getCountry());
+            query.setString(6, student.getCity());
+            query.setString(7, student.getEmail());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in updateStudent");
+            e.printStackTrace(); 
+        }
+    }
+
+    public void deleteStudent(Student student) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("DELETE FROM Student WHERE StudentEmail = ?");
+            query.setString(1, student.getEmail());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in deleteStudent");
+            e.printStackTrace();
+        }
     }
 
     public void close() {

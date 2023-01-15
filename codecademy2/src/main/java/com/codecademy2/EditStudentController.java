@@ -1,8 +1,6 @@
 package com.codecademy2;
 
-
 import com.codecademy2.DB.DbConnection;
-import com.codecademy2.Logic.Logic;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,10 +16,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class AddStudentController {
+public class EditStudentController {
     private static String genderVal;
 
-    public static void display(){
+    public static void display(Student student) {
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2202133), Miquel Stam(2192528)");
         stage.setWidth(900);
@@ -29,14 +27,21 @@ public class AddStudentController {
         stage.setResizable(false);
 
         FlowPane root = new FlowPane();
-        Label student = new Label("Student");
-        student.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-        Label errorLabel = new Label();
+        Label studentLabel = new Label("Student");
+        studentLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        
         TextField name = new TextField();
         TextField email = new TextField();
         RadioButton male = new RadioButton("Male");
         RadioButton female = new RadioButton("Female");
         RadioButton other = new RadioButton("Other");
+        if(student.getGender().equals("Male")){
+            male.selectedProperty().set(true);
+        }else if(student.getGender().equals("Other")){
+            other.selectedProperty().set(true);
+        }else if(student.getGender().equals("Female")){
+            female.selectedProperty().set(true);
+        }
         male.setOnAction(event -> {
             female.setSelected(false);
             other.setSelected(false);
@@ -59,40 +64,39 @@ public class AddStudentController {
         DatePicker birthday = new DatePicker();
         
         email.setPromptText("Email");
+        email.setText(student.getEmail());
+        email.setEditable(false);
         name.setPromptText("Name");
+        name.setText(student.getName());
         adress.setPromptText("Adress");
+        adress.setText(student.getAdress());
         city.setPromptText("City");
+        city.setText(student.getCity());
         country.setPromptText("Country");
+        country.setText(student.getCountry());
         birthday.setPromptText("Birthday");
+        birthday.setValue(student.getBirthDate());
 
         Button back = new Button("Back");
-        Button save = new Button("Save");
+        Button update = new Button("Update");
         DbConnection dbConnection = new DbConnection();
-        save.setOnAction(e -> {
-            if (Logic.mailTool(email.getText()) == false || name.getText().isEmpty() || email.getText().isEmpty() || adress.getText().isEmpty() || city.getText().isEmpty() || country.getText().isEmpty() || birthday.getValue() == null || genderVal == null) {
-                errorLabel.setText("Please fill in all the fields, \nand make sure the email is valid \n(example@example.example)");
-                System.out.println("Email is not valid");
-                email.clear();
-                email.setPromptText("Email is not valid");
-                return;
-            }
-            dbConnection.addStudent( new Student(email.getText(), name.getText(), birthday.getValue(), genderVal, adress.getText(), country.getText(), city.getText()));
-            System.out.println(genderVal);
+        update.setOnAction(e -> {
+            dbConnection.updateStudent(new Student(email.getText(), name.getText(), birthday.getValue(), genderVal, adress.getText(), country.getText(), city.getText()));
             stage.close();
             StudentController.display();
         });
       
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(save, back);
+        hBox.getChildren().addAll(update, back);
         hBox.setSpacing(70);
         back.setPrefSize(50, 30);
-        save.setPrefSize(50, 30);
+        update.setPrefSize(70, 30);
 
         VBox vBox = new VBox();
         HBox gender = new HBox();
         gender.getChildren().addAll(male, female, other);
         gender.setSpacing(5);
-        vBox.getChildren().addAll(student, errorLabel, name, email, gender , adress, city, country, birthday, hBox);
+        vBox.getChildren().addAll(studentLabel, name, email, gender , adress, city, country, birthday, hBox);
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
@@ -107,5 +111,5 @@ public class AddStudentController {
         stage.setScene(scene);
         stage.show();
     }
-    
+
 }

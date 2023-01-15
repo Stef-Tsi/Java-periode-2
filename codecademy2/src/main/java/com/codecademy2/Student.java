@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class Student {
     private String email, name, gender, adress, city, country;
-    private String birthDate;
+    private LocalDate birthDate;
     // private ArrayList<Enrollment> enrollments;
 
-    public Student(String email, String name,String birthDate, String gender, String adress, String country, String city) {
+    public Student(String email, String name, LocalDate birthDate, String gender, String adress, String country, String city) {
         this.email = email;
         this.name = name;
         this.birthDate = birthDate;
@@ -67,11 +67,11 @@ public class Student {
         this.country = country;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

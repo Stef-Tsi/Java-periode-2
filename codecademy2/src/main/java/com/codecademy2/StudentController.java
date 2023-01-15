@@ -2,6 +2,7 @@ package com.codecademy2;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.codecademy2.*;
@@ -46,9 +47,9 @@ public class StudentController {
         TableColumn<Student, String> nameCol = new TableColumn<>("name");
         nameCol.setCellValueFactory(new PropertyValueFactory<Student,
         String>("name"));
-        TableColumn<Student, String> birthdayCol = new TableColumn<>("birthday");
+        TableColumn<Student, LocalDate> birthdayCol = new TableColumn<>("birthday");
         birthdayCol.setCellValueFactory(new PropertyValueFactory<Student,
-        String>("birthDate"));
+        LocalDate>("birthDate"));
         TableColumn<Student, String> genderCol = new TableColumn<>("gender");
         genderCol.setCellValueFactory(new PropertyValueFactory<Student,
         String>("gender"));
@@ -94,11 +95,33 @@ public class StudentController {
 
         add.setOnAction(e -> {
             AddStudentController.display();
+            stage.close();
         });
 
         back.setOnAction(e -> {
             MainMenu.display();
             stage.close();
+        });
+
+        edit.setOnAction(e -> {
+            Student student = table.getSelectionModel().getSelectedItem();
+            if (student != null) {
+                EditStudentController.display(student);
+                stage.close();
+            } else {
+                System.out.println("No student selected");
+            }
+        });
+
+        delete.setOnAction(e -> {
+            Student student = table.getSelectionModel().getSelectedItem();
+            if (student != null) {
+                db.deleteStudent(student);
+                stage.close();
+                display();
+            } else {
+                System.out.println("No student selected");
+            }
         });
 
         stage.setScene(scene);

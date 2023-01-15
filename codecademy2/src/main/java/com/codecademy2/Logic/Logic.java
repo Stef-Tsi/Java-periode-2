@@ -24,7 +24,7 @@ public class Logic {
             return false;
         }
     }
-    public boolean mailTool(String mailAddress)
+    public static boolean mailTool(String mailAddress)
     {
         //Explain of the regex key
         //^	The beginning of a line
