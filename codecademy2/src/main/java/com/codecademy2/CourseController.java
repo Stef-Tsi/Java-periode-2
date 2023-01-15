@@ -1,10 +1,16 @@
 package com.codecademy2;
 
+import com.codecademy2.DB.DbConnection;
+
+import javafx.beans.Observable;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -22,16 +28,36 @@ public class CourseController {
         stage.setHeight(800);
         stage.setResizable(false);
 
-        
-        FlowPane root = new FlowPane();
-        TableView table = new TableView();
         Label moduleOverview = new Label("Course overview");
         moduleOverview.setFont(Font.font("Arial",FontWeight.BOLD ,30));
 
-        Button addCourse = new Button("Add course");
-        Button modules = new Button("modules");
-        Button delete = new Button("Delete");
+        FlowPane root = new FlowPane();
+
+        DbConnection db = new DbConnection();
+        ObservableList list = db.getCourses();
+
+        TableView<Course> table = new TableView<>();
+        table.setItems(list);
+        TableColumn<Course, String> courseName = new TableColumn<>("Course Name");
+        courseName.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseName"));
+        TableColumn<Course, String> moduleId = new TableColumn<>("Module Id");
+        moduleId.setCellValueFactory(new PropertyValueFactory<Course, String>("ModuleId"));
+        TableColumn<Course, String> courseTopic = new TableColumn<>("Course Topic");
+        courseTopic.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseTopic"));
+        TableColumn<Course, String> courseIntroText = new TableColumn<>("Course Intro Text");
+        courseIntroText.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseIntroText"));
+        TableColumn<Course, String> courseTag = new TableColumn<>("Course Tag");
+        courseTag.setCellValueFactory(new PropertyValueFactory<Course, String>("CourseTag"));
+
+        TableColumn<Course, String> courseDifficulty = new TableColumn<>("Course Difficulty");
+        courseDifficulty.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDifficulty().toString()));
+    
+        table.getColumns().addAll(courseName, moduleId,  courseTopic, courseIntroText, courseTag, courseDifficulty);
+
+        Button addCourse = new Button("Add");
         Button edit = new Button("Edit");
+        Button delete = new Button("Delete");
+        Button modules = new Button("modules");
         Button back = new Button("Back");
 
         HBox hBox = new HBox();
@@ -45,13 +71,6 @@ public class CourseController {
         delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
         table.setEditable(false);
-        TableColumn contactName = new TableColumn("Contact name");
-        TableColumn contactEmail = new TableColumn("Contact Email");
-        TableColumn moduleversion = new TableColumn("version");
-        TableColumn follownumber = new TableColumn("Follow Number");
- 
-
-        table.getColumns().addAll(follownumber, moduleversion, contactName, contactEmail);
  
         VBox vbox = new VBox();
         vbox.setSpacing(10);
@@ -62,7 +81,7 @@ public class CourseController {
         
         Scene scene = new Scene(root);
         
-            modules.setOnAction(e -> {
+        modules.setOnAction(e -> {
             ModuleController.display();
             stage.close();
         });

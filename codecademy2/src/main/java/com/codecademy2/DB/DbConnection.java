@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import com.codecademy2.Course;
+import com.codecademy2.Difficulty;
 import com.codecademy2.Student;
 
 import javafx.collections.FXCollections;
@@ -37,6 +39,8 @@ public class DbConnection {
         }
         return false;
     }
+
+    // STUDENT
 
     public ObservableList getStudents() {
         try(Connection db = DriverManager.getConnection(url, user, password)) {
@@ -100,6 +104,34 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
+
+    // COURSE
+    public ObservableList getCourses() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT * FROM Course");
+            ResultSet result = query.executeQuery();
+
+            ObservableList<Course> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+                Difficulty difficulty;
+                if (result.getString("CourseDifficulty") == "Beginner" || result.getString("CourseDifficulty") == "BEGINNER") {
+                    difficulty = Difficulty.BEGINNER;
+                } else if (result.getString("CourseDifficulty") == "Intermediate" || result.getString("CourseDifficulty") == "INTERMEDIATE") {
+                    difficulty = Difficulty.ADVANCED;
+                } else {
+                    difficulty = Difficulty.EXPERT;
+                }
+                list.add(new Course(result.getString("CourseName"), result.getInt("ModuleId"), result.getString("CourseTopic"), result.getString("CourseIntroText"), result.getString("CourseTag"), difficulty));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Error in getStudents");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public void close() {
         try {

@@ -36,6 +36,9 @@ public class StudentController {
 
         FlowPane root = new FlowPane();
 
+        Label studentOverview = new Label("Student overview");
+        studentOverview.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+
         DbConnection db = new DbConnection();
         ObservableList list = db.getStudents();
 
@@ -64,8 +67,6 @@ public class StudentController {
         String>("city"));
         table.getColumns().addAll(emailCol, nameCol, birthdayCol, genderCol, adressCol, countryCol, cityCol);
 
-        Label studentOverview = new Label("Student overview");
-        studentOverview.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
         Button add = new Button("Add");
         Button edit = new Button("Edit");

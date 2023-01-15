@@ -1,5 +1,8 @@
 package com.codecademy2;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,14 +34,17 @@ public class AddCourseController {
         
 
         TextField courseName = new TextField();
+        ChoiceBox<String> ModuleId = new ChoiceBox<>();
+
         TextField courseTopic = new TextField();
         TextField courseIntroText = new TextField();
         TextField courseTag = new TextField();
-        ChoiceBox difficulty = new ChoiceBox();
-
-        courseIntroText.setPrefSize(500, 100);
         
-        difficulty.getItems().addAll("Beginner", "Advanced", "Expert");
+        ChoiceBox<String> difficulty = new ChoiceBox<>();
+        ObservableList<String> difficultyList = FXCollections.observableArrayList("Beginner", "Advanced", "Expert");
+        difficulty.getItems().addAll(difficultyList);
+        difficulty.setValue("Beginner");
+        String courseDifficulty = difficulty.getValue();
 
         courseName.setPromptText("Course name");
         courseTopic.setPromptText("Course topic");
@@ -48,6 +54,7 @@ public class AddCourseController {
         Button save = new Button("Save");
       
         HBox hBox = new HBox();
+        courseIntroText.setPrefSize(500, 100);
         hBox.getChildren().addAll(save, back);
         hBox.setSpacing(70);
         back.setPrefSize(50, 30);
@@ -63,9 +70,8 @@ public class AddCourseController {
 
         back.setOnAction(e -> {
             stage.close();
+            CourseController.display();
         });
-
-        
 
         stage.setScene(scene);
         stage.show();
