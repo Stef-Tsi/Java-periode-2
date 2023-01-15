@@ -192,6 +192,7 @@ public class DbConnection {
         }
         return null;
     }
+
     public void close() {
         try {
             DriverManager.getConnection(url, user, password).close();
