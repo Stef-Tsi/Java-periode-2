@@ -106,7 +106,7 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
-
+    
     public void close() {
         try {
             DriverManager.getConnection(url, user, password).close();
