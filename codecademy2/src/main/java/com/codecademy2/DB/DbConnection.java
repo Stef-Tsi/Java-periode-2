@@ -5,6 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.codecademy2.Student;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class DbConnection {
     private String url;
@@ -32,11 +37,18 @@ public class DbConnection {
         return false;
     }
 
-    public ResultSet getStudents() {
+    public ObservableList getStudents() {
         try(Connection db = DriverManager.getConnection(url, user, password)) {
             PreparedStatement query = db.prepareStatement("SELECT * FROM Student");
             ResultSet result = query.executeQuery();
-            return result;
+
+            ObservableList<Student> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+            list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getString("BirthDate"), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
+            }
+    
+            return list;
         } catch (SQLException e) {
             System.out.println("Error in getStudents");
             e.printStackTrace();
