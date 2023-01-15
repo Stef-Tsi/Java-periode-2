@@ -53,7 +53,6 @@ public class AddEnrollmentController {
         stage.setScene(scene);
         stage.show();
 
-
         save.setOnAction(e -> {
            
         });

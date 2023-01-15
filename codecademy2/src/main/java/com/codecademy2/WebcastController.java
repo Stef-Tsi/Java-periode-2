@@ -60,7 +60,7 @@ public class WebcastController {
         
         add.setOnAction(e -> {
             AddWebcastController.display();
-            
+            stage.close();
         });
 
         back.setOnAction(e -> {

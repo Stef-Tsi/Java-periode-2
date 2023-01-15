@@ -1,14 +1,13 @@
 package com.codecademy2;
 
 public class Webcast {
-    private int duration;
-    private String hostName, organisationName, url;
+    private String titel, description, hostName, organisationName, url;
 
-    public Webcast(int duration, String hostName, String organisationName, String url) {
-        this.duration = duration;
+    public Webcast(String titel, String description, String hostName, String organisationName, String url) {
+        this.titel = titel;
+        this.description = description;
         this.hostName = hostName;
         this.organisationName = organisationName;
         this.url = url;
     }
-    
 }

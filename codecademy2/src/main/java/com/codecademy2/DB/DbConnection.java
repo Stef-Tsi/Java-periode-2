@@ -4,8 +4,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-
 import com.codecademy2.Course;
 import com.codecademy2.Difficulty;
 import com.codecademy2.Student;
@@ -194,7 +192,6 @@ public class DbConnection {
         }
         return null;
     }
-
     public void close() {
         try {
             DriverManager.getConnection(url, user, password).close();

@@ -56,8 +56,8 @@ public class AddWebcastController {
         root.getChildren().addAll(vBox);
 
         back.setOnAction(e -> {
-            WebcastController.display();
             stage.close();
+            WebcastController.display();
         });
 
         stage.setScene(scene);
