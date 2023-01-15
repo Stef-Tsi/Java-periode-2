@@ -45,9 +45,8 @@ public class DbConnection {
             ObservableList<Student> list = FXCollections.observableArrayList();
 
             while (result.next()) {
-            list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getString("BirthDate"), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
+                list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getString("BirthDate"), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
             }
-    
             return list;
         } catch (SQLException e) {
             System.out.println("Error in getStudents");

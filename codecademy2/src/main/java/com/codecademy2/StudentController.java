@@ -61,8 +61,7 @@ public class StudentController {
         TableColumn<Student, String> cityCol = new TableColumn<>("City");
         cityCol.setCellValueFactory(new PropertyValueFactory<Student,
         String>("city"));
-        table.getColumns().addAll(emailCol, nameCol, birthdayCol, genderCol,
-        adressCol, countryCol, cityCol);
+        table.getColumns().addAll(emailCol, nameCol, birthdayCol, genderCol, adressCol, countryCol, cityCol);
 
         Label studentOverview = new Label("Student overview");
         studentOverview.setFont(Font.font("Arial", FontWeight.BOLD, 30));

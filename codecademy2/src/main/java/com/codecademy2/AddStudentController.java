@@ -62,7 +62,6 @@ public class AddStudentController {
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(student, name, email, gender , adress, postcodeCol, city, country, enrollments, birthday, hBox);
-
         vBox.setSpacing(25);
 
         root.setAlignment(Pos.CENTER);
