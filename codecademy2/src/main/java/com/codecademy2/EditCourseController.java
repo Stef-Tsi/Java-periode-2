@@ -2,7 +2,6 @@ package com.codecademy2;
 
 import com.codecademy2.DB.DbConnection;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -16,16 +15,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class AddCourseController {
-
+public class EditCourseController {
     private static String courseDifficulty;
     private static int moduleId;
-
-    public static void display(){
+    public static void display(Course course) {
         Stage stage = new Stage();
         stage.setTitle("Anhtuan Nguyen(2192526), Luuk beks(2192527), Miquel Stam(2192528)");
         stage.setWidth(1000);
@@ -37,26 +32,32 @@ public class AddCourseController {
         DbConnection db = new DbConnection();
 
         Scene scene = new Scene(root);
-        Label course = new Label("Course");
-        course.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        Label courseLabel = new Label("Course");
+        courseLabel.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         
 
         TextField courseName = new TextField();
+        courseName.setText(course.getCourseName());
+        courseName.setEditable(false);
         ChoiceBox<String> ModuleId = new ChoiceBox<>();
         ObservableList<String> ModuleIdList = db.getModuleIds();
         ModuleId.getItems().addAll(ModuleIdList);
         ModuleId.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
             moduleId = Integer.parseInt(newValue);
         });
+        ModuleId.setValue(String.valueOf(course.getModuleId()));
         
         TextField courseTopic = new TextField();
+        courseTopic.setText(course.getCourseTopic());
         TextField courseIntroText = new TextField();
+        courseIntroText.setText(course.getCourseIntroText());
         TextField courseTag = new TextField();
+        courseTag.setText(course.getCourseTag());
         
         ChoiceBox<String> difficulty = new ChoiceBox<>();
         ObservableList<String> difficultyList = FXCollections.observableArrayList("Beginner", "Advanced", "Expert");
         difficulty.getItems().addAll(difficultyList);
-        difficulty.setValue("Beginner");
+        difficulty.setValue(course.getDifficulty().toString());
         courseDifficulty = difficulty.getValue();
         difficulty.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
             courseDifficulty = newValue;
@@ -68,7 +69,7 @@ public class AddCourseController {
         Button back = new Button("Back");
         Button save = new Button("Save");
         save.setOnAction(e -> {
-            db.addCourse(new Course(courseName.getText(), moduleId, courseTopic.getText(), courseIntroText.getText(), courseTag.getText(), Difficulty.valueOf(courseDifficulty.toUpperCase())));
+            db.updateCourse(new Course(courseName.getText(), moduleId, courseTopic.getText(), courseIntroText.getText(), courseTag.getText(), Difficulty.valueOf(courseDifficulty.toUpperCase())));
             stage.close();
             CourseController.display();
         });
@@ -81,7 +82,7 @@ public class AddCourseController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(course, courseName, ModuleId, courseTopic, courseIntroText, courseTag, difficulty, hBox);
+        vBox.getChildren().addAll(courseLabel, courseName, ModuleId, courseTopic, courseIntroText, courseTag, difficulty, hBox);
         
         vBox.setSpacing(25);
 
@@ -96,4 +97,6 @@ public class AddCourseController {
         stage.setScene(scene);
         stage.show();
     }
+    
 }
+

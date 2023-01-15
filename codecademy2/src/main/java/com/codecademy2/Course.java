@@ -61,9 +61,5 @@ public class Course {
         return moduleId;
     }
 
-    public void setModuleId(int moduleId) {
-        moduleId = moduleId;
-    }
-
     
 }

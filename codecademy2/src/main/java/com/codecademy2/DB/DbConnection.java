@@ -132,6 +132,68 @@ public class DbConnection {
         return null;
     }
 
+    public void addCourse(Course course) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("INSERT INTO Course VALUES(?, ?, ?, ?, ?, ?)");
+            query.setString(1, course.getCourseName());
+            query.setInt(2, course.getModuleId());
+            query.setString(3, course.getCourseTopic());
+            query.setString(4, course.getCourseIntroText());
+            query.setString(5, course.getCourseTag());
+            query.setString(6, course.getDifficulty().toString());
+            query.executeUpdate();
+            System.out.println("Course added");
+        } catch (SQLException e) {
+            System.out.println("Error in addCourse");
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCourse(Course course) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("DELETE FROM Course WHERE CourseName = ?");
+            query.setString(1, course.getCourseName());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in deleteCourse");
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCourse(Course course) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("UPDATE Course SET ModuleId = ?, CourseTopic = ?, CourseIntroText = ?, CourseTag = ?, CourseDifficulty = ? WHERE CourseName = ?"); 
+            query.setInt(1, course.getModuleId());
+            query.setString(2, course.getCourseTopic());
+            query.setString(3, course.getCourseIntroText());
+            query.setString(4, course.getCourseTag());
+            query.setString(5, course.getDifficulty().toString());
+            query.setString(6, course.getCourseName());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in updateCourse");
+            e.printStackTrace(); 
+        }
+    }
+
+    // MODULE
+    public ObservableList getModuleIds() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT ModuleId FROM Module");
+            ResultSet result = query.executeQuery();
+
+            ObservableList<String> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+                list.add(result.getString("ModuleId"));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Error in getModuleIds");
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void close() {
         try {
@@ -141,5 +203,5 @@ public class DbConnection {
             e.printStackTrace();
         }
     }
-
 }
+    

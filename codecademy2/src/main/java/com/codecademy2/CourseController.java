@@ -91,6 +91,27 @@ public class CourseController {
             stage.close();
         });
 
+        edit.setOnAction(e -> {
+            Course course = table.getSelectionModel().getSelectedItem();
+            if (course != null) {
+                EditCourseController.display(course);
+                stage.close();
+            } else {
+                System.out.println("No course selected");
+            }
+            stage.close();
+        });
+
+        delete.setOnAction(e -> {
+            Course course = table.getSelectionModel().getSelectedItem();
+            if (course == null) {
+                return;
+            }
+            db.deleteCourse(course);
+            display();
+            stage.close();
+        });
+
         back.setOnAction(e -> {
             MainMenu.display();
             stage.close();
