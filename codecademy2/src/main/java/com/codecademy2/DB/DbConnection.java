@@ -4,6 +4,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+
 import com.codecademy2.Course;
 import com.codecademy2.Difficulty;
 import com.codecademy2.Enrollment;
@@ -37,6 +39,15 @@ public class DbConnection {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void close() {
+        try {
+            DriverManager.getConnection(url, user, password).close();
+        } catch (SQLException e) {
+            System.out.println("Error in close");
+            e.printStackTrace();
+        }
     }
 
     // STUDENT
@@ -104,6 +115,23 @@ public class DbConnection {
         }
     }
 
+    public ObservableList getAllStudentEmails() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT StudentEmail FROM Student");
+            ResultSet result = query.executeQuery();
+            ObservableList<String> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+                list.add(result.getString("StudentEmail"));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Error in getAllStudentEmails");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     // COURSE
     public ObservableList getCourses() {
         try(Connection db = DriverManager.getConnection(url, user, password)) {
@@ -126,6 +154,23 @@ public class DbConnection {
             return list;
         } catch (SQLException e) {
             System.out.println("Error in getStudents");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ObservableList getAllCourseNames() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT CourseName FROM Course");
+            ResultSet result = query.executeQuery();
+            ObservableList<String> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+                list.add(result.getString("CourseName"));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Error in getAllCourseNames");
             e.printStackTrace();
         }
         return null;
@@ -202,8 +247,8 @@ public class DbConnection {
 
             ObservableList<Enrollment> list = FXCollections.observableArrayList();
 
-            while (result.next()) {
-                list.add(new Enrollment(result.getString("StudentEmail"), result.getString("CourseName")));
+            while (result.next()) {                
+                list.add(new Enrollment(result.getString("StudentEmail"), result.getString("CourseName"), result.getTimestamp("EnrollmentDateTime").toLocalDateTime()));
             }
             return list;
         } catch (SQLException e) {
@@ -213,13 +258,44 @@ public class DbConnection {
         return null;
     }
 
-    public void close() {
-        try {
-            DriverManager.getConnection(url, user, password).close();
+    public void addEnrollment(String studentEmail, String courseName) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("INSERT INTO Enrollment VALUES(GETDATE() ,?, ?, 0)");
+            query.setString(1, studentEmail);
+            query.setString(2, courseName);
+            query.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error in close");
+            System.out.println("Error in addEnrollment");
             e.printStackTrace();
         }
     }
+
+    public void updateEnrollment(Enrollment enrollment) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("UPDATE Enrollment SET StudentEmail = ?, CourseName = ? WHERE EnrollmentDateTime = ?");
+            query.setString(1, enrollment.getStudentEmail());
+            query.setString(2, enrollment.getCourseName());
+            query.setString(3, enrollment.getEnrollmentDateTime().toString());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in updateEnrollment");
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteEnrollment(Enrollment enrollment) {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("DELETE FROM Enrollment WHERE EnrollmentDateTime = ?");
+            query.setString(1, enrollment.getEnrollmentDateTime().toString());
+            query.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in deleteEnrollment");
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 }
     

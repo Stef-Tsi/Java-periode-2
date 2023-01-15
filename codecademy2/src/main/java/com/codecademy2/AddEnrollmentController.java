@@ -2,12 +2,13 @@ package com.codecademy2;
 
 import com.codecademy2.DB.DbConnection;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,11 +26,21 @@ public class AddEnrollmentController {
 
         Label enrollment = new Label("Enrollment");
         enrollment.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-
+        DbConnection db = new DbConnection();
         FlowPane root = new FlowPane();
-        ChoiceBox studentEmail = new ChoiceBox();
-        ChoiceBox courseName = new ChoiceBox();
+        ChoiceBox<String> studentEmail = new ChoiceBox<>();
+        ObservableList<String> studentEmailList = db.getAllStudentEmails();
+        studentEmail.getItems().addAll(studentEmailList);
+        studentEmail.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
+            studentEmail.setValue(newValue);
+        });
 
+        ChoiceBox<String> courseName = new ChoiceBox<>();
+        ObservableList<String> courseNameList = db.getAllCourseNames();
+        courseName.getItems().addAll(courseNameList);
+        courseName.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
+            courseName.setValue(newValue);
+        });
 
         Button back = new Button("Back");
         Button save = new Button("Save");
@@ -52,11 +63,11 @@ public class AddEnrollmentController {
         stage.setScene(scene);
         stage.show();
 
-        // save.setOnAction(e -> {
-        //     DbConnection db = new DbConnection();
-        //     db.addEnrollment(studentEmail.getValue().toString(), courseName.getValue().toString());
-        //     stage.close();
-        // });
+        save.setOnAction(e -> {
+            db.addEnrollment(studentEmail.getValue().toString(), courseName.getValue().toString());
+            stage.close();
+            EnrollmentController.display();
+        });
 
         back.setOnAction(e -> {
             stage.close();

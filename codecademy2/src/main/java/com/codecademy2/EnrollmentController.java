@@ -1,5 +1,11 @@
 package com.codecademy2;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
+
 import com.codecademy2.DB.DbConnection;
 
 import javafx.beans.Observable;
@@ -9,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,11 +47,24 @@ public class EnrollmentController {
 
         table.setItems(list);
         TableColumn<Enrollment, String> studentEmail = new TableColumn<>("StudentEmail");
-        studentEmail.setCellValueFactory(new PropertyValueFactory<Enrollment, String>("CourseName"));
+        studentEmail.setCellValueFactory(new PropertyValueFactory<Enrollment, String>("StudentEmail"));
         TableColumn<Enrollment, String> courseName = new TableColumn<>("CourseName");
         courseName.setCellValueFactory(new PropertyValueFactory<Enrollment, String>("CourseName"));
-        TableColumn<Enrollment, String> dateTime = new TableColumn<>("Enrollment Date Time");
-        dateTime.setCellValueFactory(new PropertyValueFactory<Enrollment, String>("EnrollmentDateTime"));
+        TableColumn<Enrollment, LocalDateTime> dateTime = new TableColumn<>("DateTime");
+        dateTime.setCellValueFactory(new PropertyValueFactory<Enrollment, LocalDateTime>("EnrollmentDateTime"));
+        dateTime.setCellFactory(column -> {
+            return new TableCell<Enrollment, LocalDateTime>() {
+                @Override
+                protected void updateItem(LocalDateTime item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
+                    }
+                }
+            };
+        });
         TableColumn<Enrollment, String> progress = new TableColumn<>("Progress");
         progress.setCellValueFactory(new PropertyValueFactory<Enrollment, String>("Progress"));
 

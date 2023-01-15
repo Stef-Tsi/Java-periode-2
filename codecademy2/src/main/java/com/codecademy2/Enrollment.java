@@ -1,5 +1,6 @@
 package com.codecademy2;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -10,10 +11,10 @@ public class Enrollment {
     private int progress;
     private ArrayList<Certificate> certificates;
 
-    public Enrollment(String studentEmail, String courseName) {
+    public Enrollment(String studentEmail, String courseName, LocalDateTime date) {
         this.studentEmail = studentEmail;
         this.courseName = courseName;
-        this.enrollmentDateTime = LocalDateTime.now();
+        this.enrollmentDateTime = date;
         this.progress = 0;
     }
 
