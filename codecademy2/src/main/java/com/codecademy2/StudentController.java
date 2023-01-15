@@ -2,8 +2,8 @@ package com.codecademy2;
 
 import java.util.List;
 
-import com.codecademy2.Domain.Student;
-
+import com.codecademy2.Domain.*;
+import com.codecademy2.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -33,13 +33,15 @@ public class StudentController {
 
         FlowPane root = new FlowPane();
 
-        List<Student> members = List.of(
-            new Student("William@test.com", "Reed", "2022-10-12", "test", "test", "test", "test"));
     
-        ObservableList<Student> teamMembers = FXCollections.observableArrayList(members);
+        ObservableList<Student> list = FXCollections.observableArrayList(
+            new Student("William@test.com", "Reed", "2022-10-12", "test", "test", "test", "test")
+        );
         TableView<Student> table = new TableView<>();
-        table.setItems(teamMembers);
+        table.setItems(list);
+        System.out.println(list.get(0).getEmail());
         TableColumn<Student, String> emailCol = new TableColumn<>("email");
+        
         emailCol.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
         // TableColumn<Student, String> nameCol = new TableColumn<>("name");
         // nameCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getName()));
