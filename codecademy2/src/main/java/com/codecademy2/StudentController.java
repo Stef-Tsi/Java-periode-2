@@ -1,9 +1,12 @@
 package com.codecademy2;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
-import com.codecademy2.Domain.*;
 import com.codecademy2.*;
+import com.codecademy2.DB.DbConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -20,7 +23,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class StudentController {
@@ -33,30 +35,40 @@ public class StudentController {
 
         FlowPane root = new FlowPane();
 
-    
-        ObservableList<Student> list = FXCollections.observableArrayList(
-            new Student("William@test.com", "Reed", "2022-10-12", "test", "test", "test", "test")
-        );
-        TableView<Student> table = new TableView<>();
-        table.setItems(list);
-        System.out.println(list.get(0).getEmail());
-        TableColumn<Student, String> emailCol = new TableColumn<>("email");
-        
-        emailCol.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
-        // TableColumn<Student, String> nameCol = new TableColumn<>("name");
-        // nameCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getName()));
-        // TableColumn<Student, String> birthdayCol = new TableColumn<>("birthday");
-        // birthdayCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getBirthDate()));
-        // TableColumn<Student, String> genderCol = new TableColumn<>("gender");
-        // genderCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getGender()));
-        // TableColumn<Student, String> adressCol = new TableColumn<>("adress");
-        // adressCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getAdress()));
-        // TableColumn<Student, String> countryCol = new TableColumn<>("Country");
-        // countryCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getCountry()));
-        // TableColumn<Student, String> cityCol = new TableColumn<>("City");
-        // cityCol.setCellValueFactory(new PropertyValueFactory<>(members.get(0).getCity()));
-        table.getColumns().addAll(emailCol);
+        DbConnection db = new DbConnection();
+        ResultSet result = db.getStudents();
+        try {
+            while (result.next()) {
+                System.out.println(result.getString("StudentEmail"));
+            }
+        } catch (SQLException e1) {
+            System.out.println("Error in getStudents");
+            e1.printStackTrace();
+        }
 
+
+        // ObservableList<Student> list = FXCollections.observableArrayList();
+
+        // list.add(new Student(result.getString("StudentEmail"), result.getString("Name"), result.getString("BirthDate"), result.getString("Gender"), result.getString("Adress"), result.getString("Country"), result.getString("City")));
+
+
+
+        TableView<Student> table = new TableView<>();
+        // table.setItems(list);        
+        // TableColumn<Student, String> emailCol = new TableColumn<>("email");
+        // emailCol.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
+        // TableColumn<Student, String> nameCol = new TableColumn<>("name");
+        // nameCol.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
+        // TableColumn<Student, String> birthdayCol = new TableColumn<>("birthday");
+        // birthdayCol.setCellValueFactory(new PropertyValueFactory<Student, String>("birthDate"));
+        // TableColumn<Student, String> genderCol = new TableColumn<>("gender");
+        // genderCol.setCellValueFactory(new PropertyValueFactory<Student, String>("gender"));
+        // TableColumn<Student, String> adressCol = new TableColumn<>("adress");
+        // adressCol.setCellValueFactory(new PropertyValueFactory<Student, String>("adress"));
+        // TableColumn<Student, String> countryCol = new TableColumn<>("Country");
+        // countryCol.setCellValueFactory(new PropertyValueFactory<Student, String>("country"));
+        // TableColumn<Student, String> cityCol = new TableColumn<>("City");
+        // cityCol.setCellValueFactory(new PropertyValueFactory<Student, String>("city"));
         // table.getColumns().addAll(emailCol, nameCol, birthdayCol, genderCol, adressCol, countryCol, cityCol);
 
         Label studentOverview = new Label("Student overview");
@@ -77,8 +89,6 @@ public class StudentController {
         delete.setPrefSize(80,30);
         back.setPrefSize(50, 30);
         table.setEditable(false);
-
-
 
         VBox vbox = new VBox();
         vbox.setSpacing(10);

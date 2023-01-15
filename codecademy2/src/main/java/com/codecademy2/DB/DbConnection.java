@@ -32,20 +32,25 @@ public class DbConnection {
         return false;
     }
 
-    public void getAllCertificates() {
-        try (Connection db = DriverManager.getConnection(url, user, password)) {
-            PreparedStatement query = db.prepareStatement("SELECT * FROM Certificate;");
+    public ResultSet getStudents() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT * FROM Student");
             ResultSet result = query.executeQuery();
-            while (result.next()) {
-                System.out.printf(result.getString(1));
-            }
+            return result;
         } catch (SQLException e) {
+            System.out.println("Error in getStudents");
             e.printStackTrace();
-        } finally {
-            System.out.println("\n Done");
         }
-
+        return null;
     }
 
+    public void close() {
+        try {
+            DriverManager.getConnection(url, user, password).close();
+        } catch (SQLException e) {
+            System.out.println("Error in close");
+            e.printStackTrace();
+        }
+    }
 
 }
