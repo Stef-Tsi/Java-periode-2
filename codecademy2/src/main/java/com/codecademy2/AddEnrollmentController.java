@@ -1,5 +1,7 @@
 package com.codecademy2;
 
+import com.codecademy2.DB.DbConnection;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,15 +23,12 @@ public class AddEnrollmentController {
         stage.setHeight(800);
         stage.setResizable(false);
 
-        FlowPane root = new FlowPane();
-        
-
-        ChoiceBox certificate = new ChoiceBox();
-        ChoiceBox student = new ChoiceBox();
-        ChoiceBox course = new ChoiceBox();
         Label enrollment = new Label("Enrollment");
         enrollment.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
+        FlowPane root = new FlowPane();
+        ChoiceBox studentEmail = new ChoiceBox();
+        ChoiceBox courseName = new ChoiceBox();
 
 
         Button back = new Button("Back");
@@ -42,7 +41,7 @@ public class AddEnrollmentController {
         save.setPrefSize(50, 30);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(enrollment, certificate, student,course , hBox);
+        vBox.getChildren().addAll(enrollment, courseName, studentEmail, hBox);
         
         vBox.setSpacing(25);
 
@@ -53,9 +52,11 @@ public class AddEnrollmentController {
         stage.setScene(scene);
         stage.show();
 
-        save.setOnAction(e -> {
-           
-        });
+        // save.setOnAction(e -> {
+        //     DbConnection db = new DbConnection();
+        //     db.addEnrollment(studentEmail.getValue().toString(), courseName.getValue().toString());
+        //     stage.close();
+        // });
 
         back.setOnAction(e -> {
             stage.close();

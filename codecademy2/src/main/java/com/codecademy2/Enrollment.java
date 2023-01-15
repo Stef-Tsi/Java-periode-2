@@ -1,24 +1,65 @@
 package com.codecademy2;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Enrollment {
+    private LocalDateTime enrollmentDateTime;
+    private String studentEmail;
+    private String courseName;
     private int progress;
-    private Student student;
-    private Course course;
-    private LocalDateTime datetime;
     private ArrayList<Certificate> certificates;
 
-    public Enrollment(Student student, Course course,LocalDateTime dateTime, int progress) {
-        this.student = student;
-        this.course = course;
-        this.datetime = LocalDateTime.now();
-        this.certificates = new ArrayList<Certificate>();
+    public Enrollment(String studentEmail, String courseName) {
+        this.studentEmail = studentEmail;
+        this.courseName = courseName;
+        this.enrollmentDateTime = LocalDateTime.now();
+        this.progress = 0;
     }
+
     public void addCertificate(Certificate certificate) {
         this.certificates.add(certificate);
     }
 
+    public LocalDateTime getEnrollmentDateTime() {
+        return enrollmentDateTime;
+    }
+
+    public void setEnrollmentDateTime(LocalDateTime enrollmentDateTime) {
+        this.enrollmentDateTime = enrollmentDateTime;
+    }
+
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public ArrayList<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(ArrayList<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    
 }

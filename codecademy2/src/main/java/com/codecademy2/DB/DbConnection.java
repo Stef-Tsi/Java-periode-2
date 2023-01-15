@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.codecademy2.Course;
 import com.codecademy2.Difficulty;
+import com.codecademy2.Enrollment;
 import com.codecademy2.Student;
 
 import javafx.collections.FXCollections;
@@ -188,6 +189,25 @@ public class DbConnection {
             return list;
         } catch (SQLException e) {
             System.out.println("Error in getModuleIds");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // ENROLLMENT
+    public ObservableList getEnrollments() {
+        try(Connection db = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement query = db.prepareStatement("SELECT * FROM Enrollment");
+            ResultSet result = query.executeQuery();
+
+            ObservableList<Enrollment> list = FXCollections.observableArrayList();
+
+            while (result.next()) {
+                list.add(new Enrollment(result.getString("StudentEmail"), result.getString("CourseName")));
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println("Error in getEnrollments");
             e.printStackTrace();
         }
         return null;
