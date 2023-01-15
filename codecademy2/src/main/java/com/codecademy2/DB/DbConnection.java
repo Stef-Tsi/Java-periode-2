@@ -4,12 +4,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 
-import com.codecademy2.Course;
-import com.codecademy2.Difficulty;
-import com.codecademy2.Enrollment;
-import com.codecademy2.Student;
+import com.codecademy2.Domain.Course;
+import com.codecademy2.Domain.Difficulty;
+import com.codecademy2.Domain.Enrollment;
+import com.codecademy2.Domain.Student;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

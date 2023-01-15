@@ -13,7 +13,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.codecademy2.DB.DbConnection;
+import com.codecademy2.GUI.CourseController;
+import com.codecademy2.GUI.EnrollmentController;
+import com.codecademy2.GUI.StudentController;
+import com.codecademy2.GUI.WebcastController;
 
 /**
  * JavaFX App
