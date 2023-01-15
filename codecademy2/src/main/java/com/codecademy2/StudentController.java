@@ -38,13 +38,6 @@ public class StudentController {
         DbConnection db = new DbConnection();
         ObservableList list = db.getStudents();
 
-        // ObservableList<Student> list = FXCollections.observableArrayList();
-
-        // list.add(new Student(result.getString("StudentEmail"),
-        // result.getString("Name"), result.getString("BirthDate"),
-        // result.getString("Gender"), result.getString("Adress"),
-        // result.getString("Country"), result.getString("City")));
-
         TableView<Student> table = new TableView<>();
         table.setItems(list);
         TableColumn<Student, String> emailCol = new TableColumn<>("email");
