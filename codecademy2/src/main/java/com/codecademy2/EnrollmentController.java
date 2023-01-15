@@ -106,12 +106,26 @@ public class EnrollmentController {
             stage.close();
         });
 
-        // edit.setOnAction(e -> {
-        // });
+        edit.setOnAction(e -> {
+            Enrollment enrollment = table.getSelectionModel().getSelectedItem();
+            if (enrollment != null) {
+                EditEnrollmentController.display(enrollment);
+                stage.close();
+            } else {
+                System.out.println("No enrollment selected");
+            }
+            stage.close();
+        });
 
-        // delete.setOnAction(e -> {
-            
-        // });
+        delete.setOnAction(e -> {
+            Enrollment enrollment = table.getSelectionModel().getSelectedItem();
+            if (enrollment == null) {
+                return;
+            }
+            db.deleteEnrollment(enrollment);
+            display();
+            stage.close();
+        });
 
         stage.setScene(scene);
         stage.show();
