@@ -11,7 +11,7 @@ public class Enrollment {
     private LocalDateTime datetime;
     private ArrayList<Certificate> certificates;
 
-    public Enrollment(Student student, Course course, LocalDateTime datetime) {
+    public Enrollment(Student student, Course course,LocalDateTime dateTime, int progress) {
         this.student = student;
         this.course = course;
         this.datetime = LocalDateTime.now();
