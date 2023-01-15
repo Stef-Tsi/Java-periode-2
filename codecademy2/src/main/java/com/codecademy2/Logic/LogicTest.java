@@ -1,3 +1,7 @@
+// IMPORTANT +++++++++++++++++++++++++
+// UNCOMMEND THE TESTS TO RUN THEM
+// IMPORTANT +++++++++++++++++++++++++
+
 
 // package com.codecademy2.Logic;
 
