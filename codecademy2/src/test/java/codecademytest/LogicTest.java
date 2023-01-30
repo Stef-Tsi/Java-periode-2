@@ -1,12 +1,15 @@
+package codecademytest;
 
 // IMPORTANT, COMMENT OUT IF NOT WORKING.
 
-package com.codecademy2.Logic;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
+
+import com.codecademy2.Logic.Logic;
 
 public class LogicTest {
     @Test
