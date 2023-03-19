@@ -109,6 +109,12 @@ public class EditStudentController {
             StudentController.display();
         });
 
+        update.setOnAction(e -> {
+            dbConnection.updateStudent(new Student(email.getText(), name.getText(), birthday.getValue(), genderVal, adress.getText(), country.getText(), city.getText()));
+            stage.close();
+            StudentController.display();
+        });
+
         stage.setScene(scene);
         stage.show();
     }

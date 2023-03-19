@@ -27,7 +27,7 @@ public class DbConnection {
 
     public boolean makeConnection() {
         try (Connection db = DriverManager.getConnection(url, user, password)) {
-                                                            //SUSER_SNAME() returns the current user
+            //SUSER_SNAME() returns the current user
             PreparedStatement query = db.prepareStatement("SELECT SUSER_SNAME();");
             ResultSet result = query.executeQuery();
             while (result.next()) {
