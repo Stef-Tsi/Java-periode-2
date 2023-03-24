@@ -125,6 +125,17 @@ public class StudentController {
                 System.out.println("No student selected");
             }
         });
+        
+        table.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                // Get the selected row
+                Student student = table.getSelectionModel().getSelectedItem();
+                if (student != null) {
+                    // Do something with the selected row data
+                    System.out.println("Double-clicked on row with data: " + student.toString());
+                }
+            }
+        });
 
         stage.setScene(scene);
         stage.show();
