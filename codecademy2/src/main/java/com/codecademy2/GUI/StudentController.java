@@ -133,6 +133,7 @@ public class StudentController {
                 if (student != null) {
                     // Do something with the selected row data
                     System.out.println("Double-clicked on row with data: " + student.toString());
+                    
                 }
             }
         });

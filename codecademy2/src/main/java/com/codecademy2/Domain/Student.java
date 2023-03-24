@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Student {
     private String email, name, gender, adress, city, country;
     private LocalDate birthDate;
-    // private ArrayList<Enrollment> enrollments;
+    private ArrayList<Enrollment> enrollments;
 
     public Student(String email, String name, LocalDate birthDate, String gender, String adress, String country, String city) {
         this.email = email;
@@ -16,7 +16,7 @@ public class Student {
         this.adress = adress;
         this.country = country;
         this.city = city;
-        // this.enrollments = enrollments;
+        this.enrollments = enrollments;
     }
 
     public String getEmail() {
@@ -75,4 +75,7 @@ public class Student {
         this.birthDate = birthDate;
     }
 
+    public ArrayList<Enrollment> getEnrollments() {
+        return enrollments;
+    }
 }
