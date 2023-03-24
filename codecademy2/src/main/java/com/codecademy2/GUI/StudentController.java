@@ -3,10 +3,13 @@ package com.codecademy2.GUI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.codecademy2.*;
 import com.codecademy2.DB.DbConnection;
+import com.codecademy2.Domain.Certificate;
+import com.codecademy2.Domain.Enrollment;
 import com.codecademy2.Domain.Student;
 
 import javafx.collections.FXCollections;
@@ -133,6 +136,16 @@ public class StudentController {
                 if (student != null) {
                     // Do something with the selected row data
                     System.out.println("Double-clicked on row with data: " + student.toString());
+
+                    for (Enrollment enrollment : student.getEnrollments()) {
+                        System.out.println("Certificate information for enrollment " + enrollment.getCourseName());
+                        ArrayList<Certificate> certificate = enrollment.getCertificates();
+                        if (certificate != null) {
+                            System.out.println("Certificate: " + certificate.toString());
+                        } else {
+                            System.out.println("No certificate found");
+                        }
+                    }
                     
                 }
             }
