@@ -5,7 +5,6 @@ package codecademytest;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 
@@ -158,7 +157,7 @@ public class LogicTest {
     }
 
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void nullPointerExceptionPostalCode (){
          //arrange
          Logic validator = new Logic();
@@ -167,10 +166,10 @@ public class LogicTest {
         
  
          //assert
-         assertThrows(NullPointerException.class, () -> validator.postalCode(null));
+        validator.postalCode(null);
         
     }
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void notEnoughNumbers (){
         //arrange
         Logic validator = new Logic();
@@ -179,7 +178,7 @@ public class LogicTest {
        
 
         //assert
-        assertThrows(IllegalArgumentException.class, () -> validator.postalCode("123A"));
+        validator.postalCode("546GE");
    }
    @Test
    public void rightInput (){
@@ -192,7 +191,7 @@ public class LogicTest {
      //assert
      assertEquals("1234 AB", valid);
 }
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void differentInput (){
      //arrange
      Logic validator = new Logic();
@@ -200,6 +199,6 @@ public class LogicTest {
      //act
 
      //assert
-     assertThrows(IllegalArgumentException.class, () -> validator.postalCode("test"));
+     validator.postalCode("a1324b");
 }
 }
